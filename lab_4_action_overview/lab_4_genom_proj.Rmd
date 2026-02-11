@@ -1,0 +1,24 @@
+---
+title: "lab_3"
+author: "daniel zawacki"
+date: "2026-02-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Gene Extraction Cleaning 
+
+After investigating the genetic data, we dame to the conclusion that there were 3 major problems impeding otherwie usable data:
+
+## 1. Ensuring a minimum length.
+Though the vast majority of our reads were in the desired 150 pase pair range, there resulted in a a small number of reads that were smaller than that range, closer to 145. We'll be using MINLEN at 150 to keep only our longest reads.
+
+## 2. Addressing Illumina adapters
+Our reads would still contai the adapters used to sequence them. We'll use ILLUMINACLIP to remove those Illumina specific sequences
+
+## 3. lower quality extremes
+
+the first roughly 20 base pairs and the last roughly 5 base pairs of our reads fluctuacted in each base pair's frequency, which is likely an error due to how DNA tends to have nucleic acid frequencies proportional to one another. We'll use CROP at 145  and HEADCROP at 20 to remove these high error regions.
