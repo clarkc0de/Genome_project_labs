@@ -1,0 +1,1 @@
+java -jar /Smaug_SSD/bin/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 1 NBP03_S165_R1_001.fastq.gz NBP03_S165_R2_001.fastq.gz Processed_R1.fastq.gz Processed_R1.Unpaired.fastq.gz Processed_R2.fastq.gz Processed_R2.Unpaired.fastq.gz MINLEN:150 ILLUMINACLIP:/Smaug_SSD/bin/Trimmomatic-0.39/adapters/TruSeq3-PE.fa:2:30:10:2:True CROP:145 HEADCROP:20
