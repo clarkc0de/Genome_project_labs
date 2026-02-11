@@ -1,0 +1,133 @@
+---
+title: "UNIX"
+output: html_document
+date: "2026-01-21"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1: How many lines are in each FASTA file?
+
+aa.fasta has 13904 lines, asmb.fasta has 37578 lines, cds.fasta has 34441 lines
+
+`wc Syn_WH101.aa.fasta`
+`wc Syn_WH101.asmb.fasta`
+`wc Syn_WH101.cds.fasta`
+
+#2: How many sequences are in each FASTA file?
+
+aa.fasta has 2705 sequences, asmb.fasta has 1, cds.fasta has 2764
+
+`grep '>' Syn_WH101.aa.fasta | wc -l`
+`grep '>' Syn_WH101.asmb.fasta | wc -l`
+`grep '>' Syn_WH101.cds.fasta | wc -l`
+
+#3: What kind of molecule is found in each FASTA file?
+
+aa.fasta has Protein, asmb.fasta has Full Genome, cds.fasta has DNA
+
+grp -v '>' Syn_WH101.cds fasta | grep 'k'
+
+#4: Why are the Syn_WH101.asmb.fasta and Syn_WH101.cds.fasta files different to each other?
+
+CDS is coding sequences, asmb is the complete genome
+
+We viewed the files for key words, asmb focused on a singular protein
+
+#5: Provide at least five different gene/protein names from the FASTA files in question
+
+1: WP_130128046.1
+2: WP_130128047.1
+3: WP_130128048.1
+4: WP_130128050.1
+5: WP_130128051.1
+
+We viewed the file and observed the protein names
+
+#6: Count the occurrence of each nucleotide (A, T, C, and G) in the Whole Genome Files (WGS) of WH8101 and compare it with the nucleotide content for the Coding Sequence file of WH8101
+
+asmb.fasta: 
+  A: 482972
+  T: 481415
+  C: 830120
+  G: 835785
+  
+cds.fasta:
+  A: 421348
+  T: 456026
+  C: 770791
+  G: 774698
+
+`grep -v '>' Syn_WH101.asmb.fasta | grep -o "A" | wc -l`
+482972
+`grep -v '>' Syn_WH101.asmb.fasta | grep -o "T" | wc -l`
+481415
+`grep -v '>' Syn_WH101.asmb.fasta | grep -o "G" | wc -l`
+835785
+`grep -v '>' Syn_WH101.asmb.fasta | grep -o "C" | wc -l`
+830120
+
+`grep -v '>' Syn_WH101.cds.fasta | grep -o "A" | wc -l`
+421348
+`grep -v '>' Syn_WH101.cds.fasta | grep -o "T" | wc -l`
+456026
+`grep -v '>' Syn_WH101.cds.fasta | grep -o "C" | wc -l`
+770791
+`grep -v '>' Syn_WH101.cds.fasta | grep -o "G" | wc -l`
+775698
+
+#7: In which of the three files can you find the genes WP_174719562.1, WP_130130567.1, and WP_130130558.1
+
+WP_174719562.1: Found in aa.fasta and cds.fasta
+  `grep WP_174719562.1 Syn_WH101.aa.fasta`
+  `grep WP_174719562.1 Syn_WH101.asmb.fasta`
+  `grep WP_174719562.1 Syn_WH101.cds.fasta`
+  
+WP_130130567.1: Found in aa.fasta and cds.fasta
+  `grep WP_130130567.1 Syn_WH101.aa.fasta`
+  `grep WP_130130567.1 Syn_WH101.asmb.fasta`
+  `grep WP_130130567.1 Syn_WH101.cds.fasta`
+
+WP_130130558.1: Found in aa.fasta and cds.fasta
+  `grep WP_130130558.1 Syn_WH101.aa.fasta`
+  `grep WP_130130558.1 Syn_WH101.asmb.fasta`
+  `grep WP_130130558.1 Syn_WH101.cds.fasta`
+
+#8: Find the function for the genes WP_130130185.1 and WP_130130145.1 in the Syn_WH8101.aa.fasta and add them in a R markdown table
+
+| WP_130130185.1       | WP_130130145.1 |
+| ------------- |:-------------:|
+| mechanosensitive ion channel family protein    | dephospho-CoA kinase |
+
+`grep "130130185.1" Syn_WH101.aa.fasta`
+
+`grep "130130145.1" Syn_WH101.aa.fasta`
+
+#9: How many genes with the hypothetical protein function can you find in the Syn_WH8101.aa.fasta file?
+
+2 genes for the mechanosensitive ion channel family
+1 gene for dephospho-CoA kinase
+
+`grep -c "mechanosensitive ion channel family protein" Syn_WH101.aa.fasta`
+2
+`grep -c "dephospho-CoA kinase" Syn_WH101.aa.fasta`
+1
+
+#10: Provide two more protein functions (annotations) and the number of genes associated with them
+
+The photosystem I reaction ceneter subunit has 6 genes
+The photosystem I reaction ceneter protein has 12 genes
+
+`grep -c "photosystem I reaction center subunit" Syn_WH101.aa.fasta`
+6
+`grep -c "photosystem II reaction center protein" Syn_WH101.aa.fasta`
+12
+
+#11: How would you extract all the information related to sequence names for each file?
+
+`grep '>' Syn_Wh101.aa.fasta > Amino_File`
+`grep '>' Syn_Wh101.asmb.fasta > Chromsome_File`
+`grep '>' Syn_Wh101.cds.fasta > CodingSQ_File`
+

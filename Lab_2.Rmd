@@ -1,0 +1,46 @@
+---
+title: "Lab 2"
+author: "Gavin F"
+date: "2026-01-28"
+output: html_document
+---
+
+1. There will be 2 FASTQ file because the samples have been sequenced as pair ends meaning they have been sequenced from 3' to 5' and 5' 3' 
+
+2. They should all be the same size because they are the same sequence being sequced forward and back. Size should be 150 bp. 
+
+3. The genome files are NBP03_S165_R1_001.fastq.gz and NBP03_S165_R2_001.fastq.gz
+
+4. The samples sequence id is @VH00487
+
+5. zcat NBP03_S165_R1_001.fastq.gz | grep -c @ 
+1589680 
+
+zcat NBP03_S165_R2_001.fastq.gz | grep -c @ 
+1589680
+
+6. The reads are the same  
+
+7. The ouputs of the fastqc file are the base staticstics of the file, multiple graphical representations of the quality per base sequenced, the gc content of the sequence and a distribution of sequence length
+
+8. Acorrding to the fastqc file there are 1589680 sequence reads in our dataset. This is in accordance to our previous result. 
+
+9. The read length for our file is 35-151. This is an unexpected result as we assumed that all sequences would be of the same length at 150 bp. 
+
+10. We have a mean GC content of 54% which doesn't match our expectations. As the oragism we were trying to sequence doesn't have a GC content of 54%. 
+
+11. The sequence quality of the file was very high with an average of 33. 
+
+12. Both the forward and reverse reads were of similar quality
+
+13. Both files had red x on the per base sequence content this was because the begining of a read tends to be of a lesser quality than the middle or end. 
+
+14. You could start by removing reads below a quality threshold. With the information we got about the gc content we can assume the sample was contaminated so using better techniques to prevent this would increase the quality of the sample. 
+
+
+
+
+
+
+
+
